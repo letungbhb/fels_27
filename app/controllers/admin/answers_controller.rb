@@ -1,2 +1,1 @@
-class Admin::AnswersController < ApplicationController
-end
+class Admin::AnswersController < Admin::AdminController
