@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
                     uniqueness: {case_sensitive: false}
   has_secure_password
 
+  scope :normal_users, -> {where(admin: false)}
+
   def is_supervisor?
    self.admin
   end
