@@ -1,0 +1,18 @@
+<h1>All lessons</h1>
+
+<ul class = "users">
+  <% @categories.each do |category| %>
+    <li>
+      <%= link_to category.cat_name, admin_categories_path(category.id) %>
+      <% category.lessons.each do |lesson| %>
+        <li>
+          <%= link_to lesson.name, admin_lessons_path(lesson), class: "element_list" %> 
+        </li>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<div>
+  <%= link_to "New lesson", new_admin_lesson_path, class: "btn btn-lg btn-primary" %>
+</div>
