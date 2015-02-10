@@ -1,0 +1,19 @@
+<h1>Words List</h1>
+
+<div>
+  <%= link_to "New word", new_admin_word_path, class: "btn btn-lg btn-primary" %>
+</div>
+
+<ul class="users">
+  <% @words.each do |word| %>
+    <li>
+      <div class="col-md-1">
+        <div>
+          <%= link_to word.content, admin_word_path(word.id) %> 
+        </div>
+        <%= link_to "edit", edit_admin_word_path(word.id) ,class: "btn btn-success" %>
+        <%= link_to "Delete", admin_word_path(word.id), method: :delete,data: {confirm: "You sure?"} , class: "btn btn-warning" %>
+      </div>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,12 @@
+<%= form_for([:admin, @word]) do |f| %>
+  <p>
+    <%= f.label :content ,"Word" %><br/> 
+    <%= f.text_field :content ,class: "word-field" %>
+  </p>
+  <%= f.fields_for :answers do |builder| %>
+    <%= render "answer_fields", f: builder %>
+  <% end %>
+  <p>
+    <%= f.submit "Submit" %>
+  </p>
+<% end %>
