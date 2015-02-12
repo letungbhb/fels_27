@@ -1,5 +1,17 @@
 <% provide(:title, @user.username) %>
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.username %>
-</h1>
+<div class="row">
+  <aside class="col-md-4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.username %>
+      </h1>
+    </section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <%= render 'follow_form' if logged_in? %>
+  </div>
+</div>

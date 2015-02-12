@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210090014) do
+ActiveRecord::Schema.define(version: 20150211113809) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "word_id",    limit: 4
@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(version: 20150210090014) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id", limit: 4
+    t.integer  "followed_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "results", force: :cascade do |t|
