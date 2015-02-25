@@ -6,7 +6,10 @@
   <%= f.fields_for :answers do |builder| %>
     <%= render "answer_fields", f: builder %>
   <% end %>
+  <%= f.label :cat_name ,"Category" %><br/> 
+  <%= f.collection_select(:category_id, Category.all, :id, :cat_name) %>
+
   <p>
-    <%= f.submit "Submit" %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
   </p>
 <% end %>

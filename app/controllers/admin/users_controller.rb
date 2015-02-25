@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::AdminController
   before_action :correct_supervisor,   only: [:edit, :update, :index, :show ]
 
   def index
-    @users = User.normal_users.paginate page: params[:page]
+    @users = User.normal_users.paginate page: params[:page], :per_page => 10
   end
 
   def show
