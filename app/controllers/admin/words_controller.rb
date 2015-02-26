@@ -1,6 +1,6 @@
 class Admin::WordsController < Admin::AdminController
   def index
-    @words = Word.all
+    @words = Word.all.paginate page: params[:page], :per_page => 10
   end
 
   def new
@@ -25,8 +25,15 @@ class Admin::WordsController < Admin::AdminController
     @word = Word.find params[:id]
   end
 
+  def destroy
+    @word = Word.find params[:id]
+    @word.destroy
+    flash[:success] = "User deleted"
+    redirect_to admin_words_url
+  end
+
   private
   def word_params
-    params.require(:word).permit(:content, answers_attributes: [:content, :correct])
+    params.require(:word).permit(:content, :category_id, answers_attributes: [:content, :correct])
   end
 end
