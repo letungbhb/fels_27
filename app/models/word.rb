@@ -19,7 +19,7 @@ class Word < ActiveRecord::Base
 
   def self.search(q, category_id)
     if q && category_id
-      where(["content LIKE ? and category_id = ?", q, category_id])
+      where(["content LIKE ? and category_id = ?", "%#{q}%", category_id])
     else
       all
     end
