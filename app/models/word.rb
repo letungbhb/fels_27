@@ -16,4 +16,12 @@ class Word < ActiveRecord::Base
   def content_correct_answer
     answers.correct.first.try :content
   end
+
+  def self.search(q, category_id)
+    if q && category_id
+      where(["content LIKE ? and category_id = ?", q, category_id])
+    else
+      all
+    end
+  end
 end

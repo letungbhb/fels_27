@@ -1,6 +1,8 @@
 class Admin::WordsController < Admin::AdminController
+
   def index
-    @words = Word.all.paginate page: params[:page], :per_page => 10
+    @words = Word.search params[:content], params[:category_id]
+    @words = @words.paginate page: params[:page], per_page: 10
   end
 
   def new
@@ -36,4 +38,9 @@ class Admin::WordsController < Admin::AdminController
   def word_params
     params.require(:word).permit(:content, :category_id, answers_attributes: [:content, :correct])
   end
+  
 end
+
+
+
+
