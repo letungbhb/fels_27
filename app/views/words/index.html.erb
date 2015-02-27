@@ -1,0 +1,33 @@
+<h1>Words List</h1>
+
+<div class= "search-form">
+  <%= form_tag('words', method: "get") do %>
+    <%= label_tag(:q, "Search word:") %>
+    <p>
+      <%= text_field_tag :content, params[:content] %>
+      <%= label_tag(:q, "Category:") %>
+      <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :cat_name) %>
+      <%= submit_tag "Search", name: nil %>
+    </p>
+  <% end %>
+</div>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <th>Word</th>
+      <th>Mean</th>
+      <th>Category</th>
+    </thead>
+    <tbody>
+      <% @words.each do |word| %>
+        <tr>
+          <td><%= word.content %></td>
+          <td><%= word.content_correct_answer %></td>
+          <td><%= word.category.try(:cat_name) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @words %>
+</div>

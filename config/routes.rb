@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   resources :users
+  resources :words
 
   namespace :admin do 
     resources :categories, :words, :lessons, :users
