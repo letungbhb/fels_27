@@ -1,7 +1,8 @@
 class Word < ActiveRecord::Base
   before_save {self.content = content.downcase}
 
-  belongs_to :lesson_word
+  has_many :lesson_words
+  has_many :lessons, through: :lesson_words
   belongs_to :category
   has_many :answers, dependent: :destroy
 
@@ -24,4 +25,9 @@ class Word < ActiveRecord::Base
       all
     end
   end
+
+  def self.search_words_by_category_id(category_id)
+    where("category_id = ?",category_id).order("RAND()").limit(20)
+  end
+
 end

@@ -1,4 +1,4 @@
 class LessonWord < ActiveRecord::Base
   belongs_to :lesson
-  has_many :words
+  belongs_to :word
 end

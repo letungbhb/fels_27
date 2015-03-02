@@ -1,16 +1,17 @@
 class Admin::LessonsController < Admin::AdminController
   
   def index
-    @categories = Category.all
+    @lessons = Lesson.all
   end
 
   def new
-    @categories = Category.all
     @lesson = Lesson.new
   end
 
   def create
     @lesson = Lesson.new lesson_params
+    @words = Word.search_words_by_category_id @lesson.category_id
+    @lesson.words = @words
     if @lesson.save
       flash[:success] = "Create a new lesson successfully!"
       redirect_to admin_lessons_path
@@ -20,8 +21,13 @@ class Admin::LessonsController < Admin::AdminController
     end
   end
 
+  def show
+    @lesson = Lesson.find params[:id]
+    @lesson_words=@lesson.lesson_words
+  end
+
   private
   def lesson_params
-    params.require(:lesson).permit(:category_id, :name)
+    params.require(:lesson).permit(:category_id, :name, :description,  lesson_words_attributes: [:lesson_id, :word_id])
   end
 end
