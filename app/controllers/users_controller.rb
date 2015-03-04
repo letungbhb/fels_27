@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
+    @user.admin = 0
     if @user.save
       flash[:success] = "Register success,Welcome to the Japanese Elearning System"
       redirect_to login_path
@@ -39,8 +40,8 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password,
-                                   :password_confirmation)
+    params.require(:user).permit :username, :email, :password,
+                                   :password_confirmation
   end
   
   def logged_in_user
