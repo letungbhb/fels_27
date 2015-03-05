@@ -36,7 +36,7 @@ class Admin::WordsController < Admin::AdminController
 
   private
   def word_params
-    params.require(:word).permit(:content, :category_id, answers_attributes: [:content, :correct])
+    params.require(:word).permit :content, :category_id, answers_attributes: [:content, :correct]
   end
 end
 
