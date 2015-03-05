@@ -1,0 +1,20 @@
+<h1>All lessons</h1>
+
+<div class="table-responsive">
+  <table class="table">  
+    <thead>
+      <td>Lesson Name</td>
+      <td>Description</td>
+      <td>Category</td>
+      <td></td>
+    </thead>
+    <% @lessons.each do |lesson| %>
+      <tr>
+        <td><%= lesson.name %></td>
+        <td><%= lesson.description %></td>
+        <td><%= lesson.category.try(:cat_name) %></td>
+        <td><%= link_to "join", lesson_path(lesson.id), class: "btn btn-success" %></td>
+      </tr>  
+    <% end %>
+  </table>
+</div>
