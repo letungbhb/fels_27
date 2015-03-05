@@ -1,0 +1,24 @@
+
+<h1><%= @lesson.name %></h1>
+
+<%= form_for @lesson, url: result_path(@lesson), html: {method: :get} do |f| %>
+  <div class="questions">
+    <% @lesson.lesson_words.each_with_index do |lw, index| %>
+      <div class="question_content">
+        <%= index + 1 %>. What does <span>"<%= lw.word.content %>"</span> means?
+        <ul class="answers">
+          <% lw.word.answers.each do |as| %>
+            <li>
+              <%= radio_button_tag "words[#{index}]", as.id %>
+              <%= as.content %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+ 
+  <p>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </p>
+<% end %>

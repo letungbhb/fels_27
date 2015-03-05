@@ -1,0 +1,24 @@
+
+<h1>Result of <%= @lesson.name %></h1>
+
+<div class="questions">
+  <% @lesson.lesson_words.each_with_index do |lw, index| %>
+    <div class="question_content">
+      <%= index + 1 %>. What does <span>"<%= lw.word.content %>"</span> means?
+      <ul class="answers">
+        <% lw.word.answers.each do |as| %>
+          <li>
+            <%= radio_button_tag "words[#{index}]", as.id, as.id == @choosen_answer[index].to_i %>
+            <%= as.content %>
+            <div class="correct"><%= @result = as.content if as.correct? %></div>
+          </li>
+        <% end %>
+        <li class="correct_content">Correct: <%= @result %></li>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<p>
+  Correct: <%= @correct_num %>/<%= @lesson.lesson_words.count %>
+</p>
