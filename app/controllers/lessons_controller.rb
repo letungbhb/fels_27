@@ -4,7 +4,9 @@ class LessonsController < ApplicationController
   end
 
   def show
-    @lesson = Lesson.find params[:id]
-    @lesson_words = @lesson.lesson_words
+    @words = Word.search_words_by_category_id params[:id]
+    @lesson = Lesson.new user_id: current_user.id, mark: 0
+    @lesson.words << @words
+    @lesson.save
   end
 end

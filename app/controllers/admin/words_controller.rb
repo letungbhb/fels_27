@@ -1,5 +1,7 @@
 class Admin::WordsController < Admin::AdminController
 
+  before_action :correct_supervisor, only: [:edit, :update, :index, :show]
+
   def index
     @words = Word.search params[:content], params[:category_id]
     @words = @words.paginate page: params[:page], per_page: 10
