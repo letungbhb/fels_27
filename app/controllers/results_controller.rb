@@ -9,7 +9,11 @@ class ResultsController < ApplicationController
       end
 
       @lesson = Lesson.find params[:id]
+      @lesson.mark = @correct_num
+      @lesson.save
+
       @lesson_words = @lesson.lesson_words
+
       @choosen_answer = params[:words].values
     end
   end
